@@ -1,7 +1,6 @@
 package org.rainday.test.keyHook;
 
 import java.util.Map.Entry;
-
 import lc.kra.system.keyboard.GlobalKeyboardHook;
 import lc.kra.system.keyboard.event.GlobalKeyAdapter;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
