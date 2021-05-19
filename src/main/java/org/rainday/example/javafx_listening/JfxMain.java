@@ -1,10 +1,9 @@
 package org.rainday.example.javafx_listening;
 
-import com.sun.javafx.tk.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.application.Preloader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,17 +24,15 @@ import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
  * @author wyd
- * @date 2021-03-20 5:42:18
  * @version 1.0 edit by wyd at 2021-03-20 5:42:18
+ * @date 2021-03-20 5:42:18
  */
-public class JfxMain extends Application {
+public class JfxMain extends Preloader {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         System.out.println(Platform.isKeyLocked(KeyCode.CAPS));
-
-        System.out.println(Toolkit.getToolkit().isKeyLocked(KeyCode.INSERT));
         primaryStage.setTitle("haha");
 
         GridPane grid = new GridPane();//网格式布局，由行列网格控制
@@ -74,15 +71,14 @@ public class JfxMain extends Application {
         final Text actiontarget = new Text();//增加用于显示信息的文本
         grid.add(actiontarget, 1, 6);
 
-        scene.addEventHandler(KeyEvent.ANY,event -> {
+        scene.addEventHandler(KeyEvent.ANY, event -> {
             System.out.println(event.getEventType() + "  " + event.getText() + "  " + event.getCode());
             scenetitle.setText("状态：" + (Platform.isKeyLocked(KeyCode.CAPS).get() ? "ON" : "OFF"));
         });
 
-        primaryStage.getOwner().addEventHandler(WindowEvent.WINDOW_HIDDEN,event -> {
+        primaryStage.addEventHandler(WindowEvent.WINDOW_HIDDEN, event -> {
             System.out.println("窗口隐藏了");
         });
-
 
         grid.hoverProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(oldValue.booleanValue() + "  " + newValue.booleanValue());
@@ -93,7 +89,6 @@ public class JfxMain extends Application {
             System.out.println(Platform.isKeyLocked(KeyCode.CAPS));
             scenetitle.setText("状态：" + (Platform.isKeyLocked(KeyCode.CAPS).get() ? "ON" : "OFF"));
         });
-
 
         //注册全局 热键
         GlobalScreen.registerNativeHook();
@@ -108,25 +103,24 @@ public class JfxMain extends Application {
         GlobalScreen.addNativeKeyListener(new NativeKeyListener() {
             @Override
             public void nativeKeyTyped(NativeKeyEvent nativeKeyEvent) {
-                System.out.println("typed: "+nativeKeyEvent.getKeyChar());
-                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state: " + Platform.isKeyLocked(KeyCode.CAPS));
+                System.out.println("state typed: " + nativeKeyEvent.getKeyChar() + Platform.isKeyLocked(KeyCode.CAPS));
+                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state typed: " + Platform.isKeyLocked(KeyCode.CAPS));
             }
 
             @Override
             public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
-                System.out.println("pressed: "+nativeKeyEvent.getKeyChar());
-                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state: " + Platform.isKeyLocked(KeyCode.CAPS));
+                System.out.println("state pressed: " + nativeKeyEvent.getKeyChar() + Platform.isKeyLocked(KeyCode.CAPS));
+                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state pressed: " + Platform.isKeyLocked(KeyCode.CAPS));
 
             }
 
             @Override
             public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
-                System.out.println("released: "+nativeKeyEvent.getKeyChar());
-                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state: " + Platform.isKeyLocked(KeyCode.CAPS));
+                System.out.println("state released: " + nativeKeyEvent.getKeyChar() + Platform.isKeyLocked(KeyCode.CAPS));
+                scenetitle.setText(nativeKeyEvent.getKeyChar() + " state released: " + Platform.isKeyLocked(KeyCode.CAPS));
 
             }
         });
-
 
         primaryStage.show();
 

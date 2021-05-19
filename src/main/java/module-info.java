@@ -14,4 +14,6 @@ module java.keyhook {
 
     requires jnativehook;
     requires system.hook;
+
+    exports org.rainday.example.javafx_listening to javafx.graphics;
 }
