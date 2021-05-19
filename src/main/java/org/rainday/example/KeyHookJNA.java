@@ -1,4 +1,4 @@
-package org.rainday.test.keyHook;
+package org.rainday.example;
 
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
@@ -8,7 +8,7 @@ import com.sun.jna.platform.win32.WinDef.WPARAM;
 import com.sun.jna.platform.win32.WinUser.KBDLLHOOKSTRUCT;
 import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
-public class MainTestKeyHook {
+public class KeyHookJNA {
 
 
     public static void main(String[] args) throws Exception {
@@ -22,11 +22,11 @@ public class MainTestKeyHook {
         };
         HINSTANCE hMod = Kernel32.INSTANCE.GetModuleHandle(null);
         User32.HHOOK hHook = User32.INSTANCE.SetWindowsHookEx(User32.WH_KEYBOARD_LL, hookProc, hMod, 0);
-        
+
         User32.MSG msg = new User32.MSG();
         System.err.println("Please press any key ....");
         User32.INSTANCE.GetMessage(msg, null, 0, 0);
-    
+
         User32.INSTANCE.UnhookWindowsHookEx(hHook);
     }
 }

@@ -1,9 +1,8 @@
+package org.rainday.example.javafx_listening;
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
-
-package org.rainday.test.keyHook;
 
 import java.util.ArrayList;
 import java.util.List;

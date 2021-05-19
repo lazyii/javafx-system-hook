@@ -17,27 +17,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-web</artifactId>
-            <version>3.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-web-api-contract</artifactId>
-            <version>3.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xuxueli</groupId>
-            <artifactId>xxl-job-core</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.14.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>5.7.0</version>
@@ -66,11 +45,40 @@
             <artifactId>javafx-controls</artifactId>
             <version>17-ea+3</version>
         </dependency>
-
-
-
-
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17-ea+3</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--add-exports</arg>
+                        <arg>javafx.graphics/com.sun.javafx.tk=java.keyhook</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.6</version>
+                <configuration>
+                    <mainClass>hellofx/org.openjfx.App</mainClass>
+                    <options>
+                        <option>--add-opens</option>
+                        <option>java.base/java.lang=org.openjfx.hellofx</option>
+                    </options>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 

@@ -1,4 +1,4 @@
-package org.rainday.test.keyHook;
+package org.rainday.example;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,7 +7,7 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-public class GlobalKeyListenerExample implements NativeKeyListener {
+public class KeyHookJnativehook implements NativeKeyListener {
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
         System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
@@ -36,9 +36,9 @@ public class GlobalKeyListenerExample implements NativeKeyListener {
             //https://github.com/kwhat/jnativehook/blob/2.2/doc/Swing.md
             // Set the event dispatcher to a swing safe executor service.
             //GlobalScreen.setEventDispatcher(new SwingDispatchService());
-    
+
             GlobalScreen.registerNativeHook();
-    
+
             //jni call java.util.logger
             Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
             logger.setLevel(Level.OFF);
@@ -53,6 +53,6 @@ public class GlobalKeyListenerExample implements NativeKeyListener {
             System.exit(1);
         }
 
-        GlobalScreen.addNativeKeyListener(new GlobalKeyListenerExample());
+        GlobalScreen.addNativeKeyListener(new KeyHookJnativehook());
     }
 }
