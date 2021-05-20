@@ -4,11 +4,11 @@ How to:
 java system keyboard/mouse hook
 
 
-- jna(有用)
+- [jna](https://github.com/java-native-access/jna) (有用)
 
-- system-hook(有用)
+- [system-hook](https://github.com/kristian/system-hook) (有用)
 
-- jnavitehook(有用)
+- [jnavitehook](https://github.com/kwhat/jnativehook) (有用)
   
 - jintellitype(可能由于版本问题，无法使用)
 
@@ -25,3 +25,29 @@ jna本身功能强大，也可以实现keyboard hook。也可以跨平台，但�
 -- javafx 17 新增了Platform.isKeyLocked(KeyCode.CAPS)（must be one of: KeyCode.CAPS or KeyCode.NUM_LOCK. ）
 解决了swing toolkit加载后keyState返回值永不变的bug。
 本次新增了全局监听demo，hover 事件监听， focused 等事件。可查看demo。
+
+
+jna调用自己编译的dll
+math.dll源码：
+```c
+int add(int a, int b)
+{
+	return a + b;
+}
+
+int minus(int a, int b)
+{
+	return a - b;
+}
+
+int multiply(int a, int b)
+{
+	return a * b;
+}
+
+double divide(int a, int b)
+{
+	double m = (double)a / b;
+	return m;
+}
+```
