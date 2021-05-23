@@ -51,3 +51,13 @@ double divide(int a, int b)
 	return m;
 }
 ```
+
+##escpos thermal printer demo
+1、增加jna调用自定义MathLibrary.dll的示例。
+2、增加使用escpos-coffe库调用thermal printer的示例（需要驱动）,基于pipedoutputstream实现。
+3、增加使用jna+JsPrinterDll.dll调用thermal printer的示例（不需要驱动）。
+4、增加使用javafx printerService,SimpleDoc,DocFlavor.BYTE_ARRAY.AUTOSENSE 调用thermal printer 打印的示例。
+
+本次使用的热敏打印机型号为：xprinter XP-58IIH。可以已经测试过的功能包括：
+`1、打印字母，汉字，二维码`
+`2、打印`

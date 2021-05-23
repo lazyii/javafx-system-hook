@@ -9,11 +9,11 @@ import com.sun.jna.Platform;
  * @version 1.0 edit by wyd at 2021-05-19 19:23:07
  * @date 2021-05-19 19:23:07
  */
-public interface Math extends Library {
+public interface MathLibrary extends Library {
 
 
     //以'/'开头直接以根路径寻找
-    Math INSTANCE = Native.load("/org/rainday/xprinter/lib/" + Platform.RESOURCE_PREFIX + "/math.dll", Math.class);
+    MathLibrary INSTANCE = Native.load("/org/rainday/xprinter/lib/" + Platform.RESOURCE_PREFIX + "/math.dll", MathLibrary.class);
 
     //"math.dll" 从根路径寻找  platform.resource_prefix/math.dll
     //Math INSTANCE = Native.load("math.dll", Math.class);
