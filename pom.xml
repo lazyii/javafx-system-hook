@@ -116,9 +116,5 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
-        <repository>
-            <id>nounouPublic</id>
-            <url>http://192.168.210.41:8081/nexus/content/groups/public/</url>
-        </repository>
     </repositories>
 </project>
