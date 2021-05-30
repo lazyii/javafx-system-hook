@@ -30,12 +30,12 @@ public class CoffeeMain {
         escpos.feed(5);
         escpos.cut(EscPos.CutMode.FULL);
 
-
+        String filePath = "/Users/wyd/Pictures/avatar.png";
 
         //compare dithering 第二张图对比阈值;  Shows how to work with BitonalThreshold and BitonalOrderedDither
         BitonalThreshold algorithm1 = new BitonalThreshold(60);
         // creating the EscPosImage, need buffered image and algorithm.
-        BufferedImage bufferedImage1 = ImageIO.read(new File("C:\\Users\\admin\\Pictures\\avatar.png"));
+        BufferedImage bufferedImage1 = ImageIO.read(new File(filePath));
         EscPosImage escposImage1 = new EscPosImage(new CoffeeImageImpl(bufferedImage1), algorithm1);
         escpos.writeLF("RasterBitImageWrapper BitonalThreshold（60黑色浅），（150 会加深黑色）");
         RasterBitImageWrapper rasterBitImageWrapper1 = new RasterBitImageWrapper();
@@ -45,7 +45,7 @@ public class CoffeeMain {
         // in this case, threshold 127
         BitonalThreshold algorithm2 = new BitonalThreshold(150);
         // creating the EscPosImage, need buffered image and algorithm.
-        BufferedImage bufferedImage2 = ImageIO.read(new File("C:\\Users\\admin\\Pictures\\avatar.png"));
+        BufferedImage bufferedImage2 = ImageIO.read(new File(filePath));
         EscPosImage escposImage2 = new EscPosImage(new CoffeeImageImpl(bufferedImage2), algorithm2);
 
         //print RasterBitImageWrapper  raster(光栅) bitmap 正确打印
@@ -58,7 +58,7 @@ public class CoffeeMain {
         // this wrapper uses esc/pos sequence: "ESC '*'"  正确打印
         BitonalThreshold algorithm3 = new BitonalThreshold(230);
         // creating the EscPosImage, need buffered image and algorithm.
-        BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\admin\\Pictures\\avatar.png"));
+        BufferedImage bufferedImage3 = ImageIO.read(new File(filePath));
         EscPosImage escposImage3 = new EscPosImage(new CoffeeImageImpl(bufferedImage3), algorithm3);
         BitImageWrapper bitImageWrapper3 = new BitImageWrapper();
         escpos.writeLF("BitImageWrapper");

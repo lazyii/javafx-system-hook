@@ -122,9 +122,15 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
-        <repository>
-            <id>nounouPublic</id>
-            <url>http://192.168.210.41:8081/nexus/content/groups/public/</url>
-        </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
