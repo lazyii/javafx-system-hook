@@ -6,6 +6,7 @@ import org.usb4java.Context;
 import org.usb4java.DescriptorUtils;
 import org.usb4java.Device;
 import org.usb4java.DeviceDescriptor;
+import org.usb4java.DeviceHandle;
 import org.usb4java.DeviceList;
 import org.usb4java.Interface;
 import org.usb4java.InterfaceDescriptor;
@@ -39,13 +40,16 @@ public class UsbMain {
             for (Device device : list) {
                 DeviceDescriptor deviceDescriptor = new DeviceDescriptor();
                 result = LibUsb.getDeviceDescriptor(device, deviceDescriptor);
+
+                int vid = deviceDescriptor.idVendor();
+                int pid = deviceDescriptor.idProduct();
+                String vpid = vid + "  " + pid + "  ";
+
                 //basic class = bDeviceClass = usbclass
                 String basicClass = DescriptorUtils.getUSBClassName(deviceDescriptor.bDeviceClass());
-                System.out.println(deviceDescriptor);
-                System.out.println(basicClass);
+                System.out.println(vpid + deviceDescriptor);
+                System.out.println(vpid + basicClass);
 
-//                int vid = deviceDescriptor.idVendor();
-//                int pid = deviceDescriptor.idProduct();
                 final ConfigDescriptor config = new ConfigDescriptor();
                 if (LibUsb.getActiveConfigDescriptor(device, config) >= 0) {
                     try {
@@ -54,7 +58,11 @@ public class UsbMain {
                             final Interface iface = config.iface()[j];
                             for (int k = 0; k < iface.numAltsetting(); k++) {
                                 final InterfaceDescriptor ifaceDescriptor = iface.altsetting()[k];
-                                System.out.println(ifaceDescriptor);
+                                DeviceHandle deviceHandle = new DeviceHandle();
+                                int r2 = LibUsb.kernelDriverActive(deviceHandle, ifaceDescriptor.bInterfaceNumber());
+                                System.out.println(r2);
+
+                                System.out.println(vpid + ifaceDescriptor);
                                 int busNum = LibUsb.getBusNumber(device);
 
                                 /*if (ifaceDescriptor.bNumEndpoints() > 0) {

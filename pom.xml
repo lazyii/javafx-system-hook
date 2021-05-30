@@ -45,6 +45,12 @@
             <artifactId>usb4java-javax</artifactId>
             <version>1.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.jna4usb</groupId>
+            <artifactId>purejavahidapi</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
 
 
         <!--        <dependency>
