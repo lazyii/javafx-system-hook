@@ -2,7 +2,6 @@ package org.rainday.xprinter.case2.utils;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
-import com.sun.jna.Platform;
 
 /**
  * @author wyd
@@ -12,7 +11,9 @@ import com.sun.jna.Platform;
 public interface XprinterLibrary extends Library {
 
     //以'/'开头直接以根路径寻找
-    XprinterLibrary INSTANCE = Native.load("/org/rainday/xprinter/lib/" + Platform.RESOURCE_PREFIX + "/JsPrinterDll.dll", XprinterLibrary.class);
+    //XprinterLibrary INSTANCE = Native.load("/org/rainday/xprinter/lib/" + Platform.RESOURCE_PREFIX + "/JsPrinterDll.dll", XprinterLibrary.class);
+    //默认会寻找 对应 系统文件夹下的 JsPrinterDll.dll 文件
+    XprinterLibrary INSTANCE = Native.load("JsPrinterDll.dll", XprinterLibrary.class);
 
     /**
      * xp-58iih - vid:0x0483 pid:0x070B 打开打印机
